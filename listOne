@@ -1,0 +1,128 @@
+Exercicios Estrutura de Dados:
+
+1) Memória, variáveis e endereços
+
+#include <stdio.h>
+
+int main() {
+ int a = 5;
+ int b = 10;
+ 
+ printf("O valor a é %d", a);
+ printf("O valor b é %d", b);
+ printf("O endereco a é %p\n", (void*)&a);
+ printf("O endereco b é %p\n", (void*)&b);
+
+ return 0;
+}
+
+-----------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int a = 5;
+    int b = 10;
+    
+    printf("O valor a é %d\n", a);
+    printf("O valor b é %d\n", b);
+    printf("O endereco a é %p\n", (void*)&a);
+    printf("O endereco b é %p\n", (void*)&b);
+    
+    a = 10;
+    b = 5;
+    
+    printf("O valor a é %d\n", a);
+    printf("O valor b é %d\n", b);
+    printf("O endereco a é %p\n", (void*)&a);
+    printf("O endereco b é %p\n", (void*)&b);
+
+    return 0;
+}
+
+------------------------------------------------------
+
+2) Definição de ponteiro
+Esses dois operadores são complementares:
+• & parte de uma variável e obtém seu endereço
+• * parte de um endereço e obtém o valor armazenado nele
+
+
+#include <stdio.h>
+
+int main() {
+    int x = 7;
+    int* p = &x;
+    
+    printf("Antes da mudanca: %d\n", x);
+    
+    *p = 99;
+    printf("Antes da mudanca: %d", x);
+
+    return 0;
+}
+
+----------------------------------------------------
+
+3) Ponteiros não inicializados: um erro comum e perigoso
+
+int main() {
+    
+   int x = 90;
+   int *p = &x;
+   
+   printf("Valor de x: %d\n", x); 
+   printf("Endereço de x: %p\n", (void*)&x);
+
+    return 0;
+}
+
+----------------------------------------------------
+Exercício 4 — Função com verificação de NULL
+
+#include <stdio.h>
+
+void imprime_int(const int *p){
+    if(p == NULL){
+        printf("Ponteiro Nulo\n");
+    } else {
+        printf("Valor: %d\n", (void*)p);
+    }
+}
+
+int main() {
+    int *x =10; 
+    imprime_int(NULL);
+    imprime_int(&x);
+    
+    return 0;
+}
+
+-------------------------------------------------
+5) Ponteiros e funções: passagem por valor e passagem por
+referência
+
+#include <stdio.h>
+
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x = 3;
+    int y = 9;
+    
+    printf("x antes da troca: %d\n", x);
+    printf("y antes da troca: %d\n", y);
+    swap(&x, &y);
+    
+    printf("x depois da troca: %d\n", x);
+    printf("y depois da troca: %d\n", y);
+
+}
+
+
+
+
