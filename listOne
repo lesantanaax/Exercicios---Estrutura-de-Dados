@@ -122,7 +122,100 @@ int main() {
     printf("y depois da troca: %d\n", y);
 
 }
+----------------------------------------------------
+6)Ponteiro de ponteiro
+void aponta_para_zero(int **pp, int *zero){
+  *pp = zero;
+}
 
+int main()
+{
+    int zero = 0;
+    int x = 42;
+    int *p = &x;
+    
+    printf("Valor: %d\n", (void*)p);
+    
+    aponta_para_zero(&p, &zero);
+    
+    printf("Valor: %d\n", (void*)p);
 
+}
 
+---------------------------------------------------
+7) Impressão de Arrays
+
+void imprime_array(const int *v, int n){
+  for (int i = 0; i < n; i++) {
+    printf("%d\n", *(v + i));
+  }
+}
+
+int main()
+{
+    int v[5] = {10, 20, 30, 40, 50};
+    int *p = v;
+    int n = 5;
+    
+    imprime_array(&v , n);
+
+} 
+
+-----------------------------------------------------
+8) - Implementação manual de strlen
+ int meu_strlen(const char *s){
+  char *p = s;
+  int cont = 0;
+  
+  if(p == NULL){
+      return -1;
+  } else {
+    while (*p != '\0') {
+      putchar(*p);
+      p++;
+      cont++;
+      printf("%d\n", (void*)p);
+    }
+      printf("Qtd de carateres: %d", cont);
+
+  }
+}
+
+int main()
+{
+    char s[] = "casa";
+    meu_strlen(s);
+
+} 
+
+--------------------------------------------------
+9) A finalizar
+
+typedef struct Aluno {
+  char nome[7];
+  int ra;
+  float nota;
+}
+
+void imprime_aluno(const struct Aluno *a){
+  if(a == NULL){
+    printf("ERRO AO CADASTRAR ALUNO!");
+  } else{
+    printf("Nome %p", a->nome);
+    printf("RA %d",   a->ra);
+    printf("Nota %f", a->nota);
+
+  }
+}
+
+int main()
+{
+    struct Aluno aluno1;
+    aluno1.nome = "Leticia";
+    aluno1.ra = 6737;
+    aluno1.nota = 8.9;
+    
+    imprime_aluno(&aluno1);
+
+} 
 
