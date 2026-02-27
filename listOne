@@ -157,65 +157,128 @@ int main()
     int *p = v;
     int n = 5;
     
-    imprime_array(&v , n);
+    imprime_array(p , n);
 
 } 
 
 -----------------------------------------------------
 8) - Implementação manual de strlen
- int meu_strlen(const char *s){
-  char *p = s;
-  int cont = 0;
-  
-  if(p == NULL){
-      return -1;
-  } else {
-    while (*p != '\0') {
-      putchar(*p);
-      p++;
-      cont++;
-      printf("%d\n", (void*)p);
-    }
-      printf("Qtd de carateres: %d", cont);
+ int meu_strlen(const char* s) {
+    int cont = 0;
 
-  }
+    if (s == NULL) {
+        return -1;
+    }
+    else {
+        while (*(s+cont) != '\0') {
+            printf("%c\n", *(s + cont));
+            cont++;
+        }
+        printf("Qtd de carateres: %d", cont);
+    }
 }
 
 int main()
 {
     char s[] = "casa";
     meu_strlen(s);
-
-} 
+}
 
 --------------------------------------------------
 9) A finalizar
-
 typedef struct Aluno {
-  char nome[7];
-  int ra;
-  float nota;
-}
+    char nome[50];
+    int ra;
+    float nota;
+}Aluno;
 
-void imprime_aluno(const struct Aluno *a){
-  if(a == NULL){
-    printf("ERRO AO CADASTRAR ALUNO!");
-  } else{
-    printf("Nome %p", a->nome);
-    printf("RA %d",   a->ra);
-    printf("Nota %f", a->nota);
+void imprime_aluno(const struct Aluno* a) {
+    if (a == NULL) {
+        printf("ERRO AO CADASTRAR ALUNO!");
+    }
+    else {
+        //printf("Nome %p", a->nome);
+        printf("RA %d\n", a->ra);
+        printf("Nota %f\n", a->nota);
 
-  }
+    }
 }
 
 int main()
 {
     struct Aluno aluno1;
-    aluno1.nome = "Leticia";
+    //aluno1.nome = "Leticia";
     aluno1.ra = 6737;
     aluno1.nota = 8.9;
-    
+
     imprime_aluno(&aluno1);
 
-} 
+}
+
+----------------------------------------
+
+int* cria_int(int valor) {
+	int* p = (int *)malloc(sizeof(int));
+	*p = 23;
+
+	*p = valor;
+	return p;
+
+}
+
+
+int main()
+{
+	int* p = cria_int(42);
+	printf("valor: %d", *p);
+	free(p);
+
+
+}
+
+
+---------------------------------------
+Lista Ligada
+// estruturadedados_ex.cpp : Este arquivo contém a função 'main'. A execução do programa começa e termina ali.
+//
+
+#include <iostream>
+#include <stdlib.h>
+
+typedef struct No {
+	int valor;
+	struct No *prox;
+}No;
+
+
+No* criar_no(int valor) {
+	No* novoNo = (No*)malloc(sizeof(No));
+	novoNo -> valor = valor;
+	novoNo ->prox = NULL;
+}
+void push_front(No** head, int v) {
+	No* novo = (No*)malloc(sizeof(No));
+	if (novo == NULL) return;
+	novo->valor = v;
+	novo->prox = *head;
+	*head = novo;
+}
+
+void somar(No* head) {
+	int soma = 0;
+	for (No* p = head; p != NULL; p = p->prox) {
+		printf("%d -> ", p->valor);
+		soma++;
+	}
+
+}
+
+int main()
+{
+	
+
+
+}
+
+
 
