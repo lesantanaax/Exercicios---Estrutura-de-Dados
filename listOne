@@ -279,6 +279,89 @@ int main()
 
 
 }
+-----------------------------------------------------------------
+
+// exPoo.cpp : Este arquivo contém a função 'main'. A execução do programa começa e termina ali.
+//
+
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct No {
+    int valor;
+    struct No* prox;
+}No;
+
+void insercao_inicio(No** head, int v) {
+    No* novoElemento = malloc(sizeof(No));
+    if (novoElemento == NULL) return;
+    novoElemento->valor = v;
+    novoElemento->prox = *head;
+    *head = novoElemento;
+
+}
+
+void imprimir(No* head) {
+    No* p = head;
+    while (p != NULL) {
+        printf("[%d] ->", p->valor);
+        p = p->prox;
+    }
+}
+
+void insercao_fim(No** head, int v) {
+    No* novoElemento = malloc(sizeof(No));
+    if (novoElemento == NULL) return;
+    novoElemento->valor = v;
+    novoElemento->prox = NULL;
+    No* p = head;
+
+    while (p->prox != NULL) p = p->prox;
+    
+    p -> prox = novoElemento;
+
+}
 
 
 
+void inserir_ordenado(No** head, int v) {
+    No* novoElemento = malloc(sizeof(No));
+    novoElemento->valor = v;
+
+    if (head == NULL || (*head)->valor > v ) {
+        novoElemento->prox = *head;
+        *head = novoElemento;  
+    }
+
+    No* anterior = *head;
+    No* atual = (*head)->prox;
+    while (atual != NULL && atual->valor < v) {
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    anterior->prox = novoElemento;
+    novoElemento->prox = atual;
+
+}
+
+No* buscar(No* head, int v) {
+    No* atual = head;
+    while (atual != NULL) {
+        if (atual->valor == v) {
+            return atual;
+        }
+        atual = atual->prox;
+    }
+    return NULL;
+}
+ 
+
+int main() {
+    No* head = NULL;
+    insercao_inicio(&head, 10);
+    insercao_inicio(&head, 20);
+    insercao_inicio(&head, 30);
+
+    imprimir(head);
+}
