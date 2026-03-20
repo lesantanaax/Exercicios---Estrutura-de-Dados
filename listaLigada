@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct No {
+    int valor;
+    struct No* prox;
+}No;
+
+void inserir_inicio(No** head, int v) { /// pont de pont para inserir valor nela
+    No* novoElemento = malloc(sizeof(No));
+    if (novoElemento == NULL) return;
+    novoElemento->valor = v;
+    novoElemento->prox = *head;
+    *head = novoElemento;
+}
+
+void imprimir(No* head) {
+    No* p = head;
+    while (p != NULL) {
+        printf("[%d] ->", p->valor);
+        p = p->prox;
+    }
+}
+
+//No* buscar(No* head, int v) {
+//    No* atual = head;
+//    while (atual != NULL) {
+//        if (atual->valor == v) {
+//            return atual;
+//        }
+//        atual = atual->prox;
+//    }
+//    return NULL;
+//}
+
+//No* remocao(No* head, int v) {
+//
+//    if (*head == NULL || (*head)->valor == v) {
+//        No* temp = *head;
+//        *head = (*head)->prox;
+//
+//        free(temp);
+//    }
+//
+//    No* anterior = *head;
+//    No* atual = (*head)->prox;
+//
+//    while (atual != NULL) {
+//        if (atual->valor == v) {
+//            return atual;
+//            anterior->prox = atual->prox;
+//            free(atual);
+//            return;
+//        }
+//        anterior = atual;
+//        atual = atual->prox
+//    }
+//}
+
+
+//No* zerarLista(No** head) {
+//    while (atual != NULL) {
+//        No* temp = *head;
+//        *head = (*head)->prox;
+//
+//        free(temp);
+//    }
+//    *head = NULL;
+//}
+
+//No* reordenarLista(No** head) {
+//    if (head == NULL) return;
+//    for (No* i = *head; i->prox != NULL ; i->prox) {
+//        No* min =i;
+//        for (No* j = i->prox; j != NULL; j->prox) {
+//            if (j-> valor < min->valor) {
+//                min = j;
+//
+//            }
+//        }
+//        if (min != i) {
+//            int temp = i->valor;
+//            i->valor = min->valor;
+//            min->valor = temp;
+//        }
+//    }
+//}
+
+
+//int contarElementos(No* head) {
+//    int cont = 0;
+//    No* atual = head;
+//    if (head == NULL) return;
+//
+//    while (atual != NULL) {
+//       cont++;
+//       atual = atual->prox;
+//    }
+//}
+
+No* removerUltimo(No* head) {
+    No* anterior = *head;
+    No* atual = (*head)->prox;
+    if (*head == NULL) return;
+
+    if (atual == NULL)`{
+        atual = NULL;
+    }
+
+    while (atual != NULL) {
+        if (atual->prox == NULL) {
+            
+            free(atual);
+            
+        }
+    }
+}
+
+int main() {
+    No* head = NULL;
+    insercao_ordenado(&head, 10);
+    insercao_ordenado(&head, 20);
+    insercao_ordenado(&head, 30);
+
+    imprimir(head);
+
+}
